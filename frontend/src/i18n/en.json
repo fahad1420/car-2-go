@@ -1,0 +1,153 @@
+{
+  "nav": {
+    "home": "Home",
+    "fleet": "Showroom Fleet",
+    "services": "VIP Services",
+    "locations": "GCC Hubs",
+    "contact": "Concierge",
+    "signIn": "Sign In",
+    "account": "My Account",
+    "admin": "Admin Suite",
+    "bookNow": "Book Now",
+    "exploreFleet": "Explore Fleet"
+  },
+  "hero": {
+    "badge": "PREMIUM AUTOMOTIVE MOBILITY • SAUDI ARABIA & GCC",
+    "titleLine1": "DRIVE BEYOND",
+    "titleLine2": "ORDINARY.",
+    "subtitle": "Immerse yourself in Saudi Arabia's most prestigious automotive collection. Handcrafted delivery to private terminals, VIP residences, and elite five-star destinations.",
+    "exploreFleet": "Explore Fleet",
+    "bookNow": "Reserve Vehicle",
+    "statusOnline": "VIP Concierge Available 24/7",
+    "stat1Value": "100%",
+    "stat1Label": "Guaranteed Model",
+    "stat2Value": "< 45m",
+    "stat2Label": "Runway VIP Delivery",
+    "stat3Value": "4.98",
+    "stat3Label": "Client Satisfaction"
+  },
+  "statement": {
+    "tag": "PHILOSOPHY OF MOTION",
+    "heading": "MORE THAN A RENTAL. A HIGHER STANDARD OF MOTION.",
+    "description": "We believe luxury is not just a destination, but the effortless power and silence of the journey. Car 2 Go bridges avant-garde technology and personalized royal concierge to redefine private automotive travel across the Kingdom."
+  },
+  "story": {
+    "tag": "PRECISION CRAFTSMANSHIP",
+    "title": "SCULPTED FOR THE EXTRAORDINARY",
+    "point1Title": "Bespoke Curation",
+    "point1Desc": "Every vehicle in our fleet is hand-specified with premium carbon accents, sound-dampened acoustics, and luxury massage suites.",
+    "point2Title": "White-Glove Delivery",
+    "point2Desc": "From King Khalid Private Aviation to the Red Sea archipelago, your car arrives in immaculate condition on your exact schedule.",
+    "point3Title": "Uncompromised Integrity",
+    "point3Desc": "Zero hidden deposits, crystal-clear terms, and comprehensive all-inclusive coverage for effortless peace of mind."
+  },
+  "fleet": {
+    "tag": "SHOWROOM CATALOG",
+    "title": "THE PRESTIGE COLLECTION",
+    "subtitle": "Discover our meticulously curated selection of world-class supercars, grand tourers, and executive luxury sedans.",
+    "all": "All Categories",
+    "luxury": "Luxury",
+    "sports": "Sports & Supercars",
+    "executive": "Executive & Maybach",
+    "suv": "Luxury SUV",
+    "perDay": "/ day",
+    "seats": "Seats",
+    "acceleration": "0-100 km/h",
+    "speed": "Top Speed",
+    "horsepower": "Power",
+    "reserve": "Instant Reserve",
+    "details": "View Specifications",
+    "available": "Immediate Hand-Off",
+    "searchPlaceholder": "Search by model, brand (Rolls-Royce, Porsche...)"
+  },
+  "services": {
+    "tag": "BESPOKE CONCIERGE",
+    "title": "TAILORED MOBILITY SERVICES",
+    "subtitle": "Elevate every aspect of your stay with our signature white-glove automotive solutions.",
+    "service1Title": "Private Aviation & Runway Hand-Off",
+    "service1Desc": "Step directly from your private jet or first-class gate to your waiting Rolls-Royce or Maybach with chilled refreshments.",
+    "service2Title": "Executive Chauffeur Service",
+    "service2Desc": "Highly trained multilingual executive chauffeurs with route optimization, discreet security protocols, and total privacy.",
+    "service3Title": "Cross-Border GCC Mobility",
+    "service3Desc": "Seamless documentation and permits for uninterrupted luxury journeys across Saudi Arabia, UAE, Qatar, and Bahrain.",
+    "service4Title": "VIP Door-to-Door Delivery",
+    "service4Desc": "Enclosed transport or bespoke chauffeur drop-off directly at your private villa, hotel lobby, or corporate headquarters."
+  },
+  "featured": {
+    "tag": "FLAGSHIP LAUNCH",
+    "title": "THE EPITOME OF POWER & SILENCE",
+    "reserveNow": "Reserve Flagship Now",
+    "viewShowroom": "View Full Fleet"
+  },
+  "whyUs": {
+    "tag": "THE CAR 2 GO ADVANTAGE",
+    "title": "A NEW BENCHMARK IN LUXURY MOBILITY",
+    "card1Title": "Guaranteed Exact Vehicle",
+    "card1Desc": "The exact chassis, color scheme, and specification you book is the exact vehicle delivered to your door.",
+    "card2Title": "Zero Hidden Costs",
+    "card2Desc": "Transparent VAT, transparent deposits, and pre-calculated mileage rates with zero surprises.",
+    "card3Title": "24/7 Royal Concierge",
+    "card3Desc": "Dedicated personal mobility manager assigned via WhatsApp and direct hotline around the clock.",
+    "card4Title": "Flawless Maintenance",
+    "card4Desc": "Factory certified maintenance after every booking with multi-point acoustic, mechanical, and detailing inspection."
+  },
+  "network": {
+    "tag": "KINGDOM & GCC COVERAGE",
+    "title": "STRATEGIC LUXURY HUBS",
+    "subtitle": "Available at premier international airports, prestige financial districts, and luxury desert resorts."
+  },
+  "faq": {
+    "tag": "CLIENT ASSISTANCE",
+    "title": "FREQUENTLY ASKED QUESTIONS",
+    "subtitle": "Clear answers to essential rental details, licensing, security, and concierge protocols."
+  },
+  "cta": {
+    "title": "READY TO ELEVATE YOUR JOURNEY?",
+    "subtitle": "Experience Saudi Arabia and the GCC behind the wheel of the world's most sought-after automobiles.",
+    "exploreFleet": "Explore Showroom Fleet",
+    "bookNow": "Book Your Vehicle"
+  },
+  "footer": {
+    "about": "CAR 2 GO is the premier automotive rental and luxury mobility platform across Saudi Arabia and the GCC, delivering unmatched automotive elegance and bespoke concierge service.",
+    "quickLinks": "Quick Links",
+    "fleet": "Fleet Collection",
+    "services": "VIP Services",
+    "contact": "Contact Concierge",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "copyright": "© 2026 CAR 2 GO Luxury Mobility. All Rights Reserved."
+  },
+  "booking": {
+    "step1": "1. Schedule & Hubs",
+    "step2": "2. Select Vehicle",
+    "step3": "3. Bespoke Add-Ons",
+    "step4": "4. Verification & Confirm",
+    "pickupLoc": "Pickup Location",
+    "returnLoc": "Return Location",
+    "pickupDateTime": "Pickup Date & Time",
+    "returnDateTime": "Return Date & Time",
+    "sameReturn": "Return to the same location",
+    "diffReturn": "Return to a different hub / airport",
+    "continue": "Continue to Vehicles",
+    "back": "Back",
+    "confirmBooking": "Confirm & Reserve Now",
+    "bookingSummary": "Rental Summary",
+    "baseRate": "Base Rental Rate",
+    "duration": "Rental Duration",
+    "days": "Days",
+    "vat": "VAT (15% KSA)",
+    "deposit": "Refundable Security Deposit",
+    "total": "Estimated Total",
+    "applyPromo": "Apply Privilege Code",
+    "promoPlaceholder": "Enter Promo Code (e.g. CAR2GO)",
+    "applied": "Applied",
+    "guestDetails": "Guest Credentials",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone (with country code)",
+    "idNumber": "National ID / Passport Number",
+    "drivingLicense": "Driving License Number",
+    "notes": "Special VIP Requests & Preferences"
+  }
+}
+
