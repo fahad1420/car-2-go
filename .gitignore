@@ -31,3 +31,4 @@ dist-ssr
 
 # Storage temp data
 backend/data/db_store.json
+
