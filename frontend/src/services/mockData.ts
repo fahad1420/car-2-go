@@ -458,3 +458,4 @@ export const initialMockBookings: Booking[] = [
     createdAt: new Date(Date.now() - 86400000 * 5).toISOString()
   }
 ];
+
