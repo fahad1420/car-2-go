@@ -95,7 +95,7 @@ export const Hero: React.FC<HeroProps> = ({
   }, [videoPath]);
 
   return (
-    <section className="relative w-full min-h-[92vh] md:min-h-screen flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 overflow-hidden bg-brand-charcoal text-white">
+    <section className="relative w-full min-h-[92vh] md:min-h-screen flex flex-col justify-between pt-20 sm:pt-24 md:pt-32 pb-24 sm:pb-28 lg:pb-12 overflow-hidden bg-brand-charcoal text-white">
       {/* Full-Screen Cinematic Background Video */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none bg-brand-charcoal">
         {/* Poster Fallback Layer (Ensures zero blank frames while video initializes) */}
