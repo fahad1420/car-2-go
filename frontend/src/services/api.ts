@@ -5,14 +5,21 @@ const API_BASE_URL = '/api';
 
 // Local storage keys for standalone static demo mode
 const STORAGE_KEYS = {
-  VEHICLES: 'car2go_vehicles',
-  BOOKINGS: 'car2go_bookings',
+  VEHICLES: 'car2go_vehicles_v3',
+  BOOKINGS: 'car2go_bookings_v2',
 };
 
 function getLocalVehicles(): Vehicle[] {
   try {
     const saved = localStorage.getItem(STORAGE_KEYS.VEHICLES);
-    if (saved) return JSON.parse(saved);
+    if (saved) {
+      const parsed: Vehicle[] = JSON.parse(saved);
+      // Ensure image URLs stay in sync with latest valid photo URLs
+      return initialMockVehicles.map(initV => {
+        const existing = parsed.find(p => p._id === initV._id);
+        return existing ? { ...existing, images: initV.images } : initV;
+      });
+    }
   } catch (e) {
     // Ignore storage parse errors
   }

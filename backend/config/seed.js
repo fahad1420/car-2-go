@@ -314,8 +314,8 @@ export const seedDatabase = async () => {
       extraMileageCost: 14,
       location: 'Eastern Province - Al Khobar Corniche Concierge',
       images: [
-        'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1600&q=85',
-        'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=85'
+        'https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=1600&q=85',
+        'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1600&q=85'
       ],
       features: [
         'SV Signature Suite with Electrically Deployable Club Table',

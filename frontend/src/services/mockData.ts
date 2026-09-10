@@ -279,8 +279,8 @@ export const initialMockVehicles: Vehicle[] = [
     extraMileageCost: 14,
     location: 'Riyadh - Al Olaya Prestige Showroom',
     images: [
-      'https://images.unsplash.com/photo-1541348263662-e0c8de4259ba?auto=format&fit=crop&w=1600&q=85',
-      'https://images.unsplash.com/photo-1519245659620-e859806a8d3b?auto=format&fit=crop&w=1600&q=85'
+      'https://images.unsplash.com/photo-1606016159991-dfe4f2746ad5?auto=format&fit=crop&w=1600&q=85',
+      'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=1600&q=85'
     ],
     features: [
       'SV Signature Suite with Electrically Deployable Club Table',

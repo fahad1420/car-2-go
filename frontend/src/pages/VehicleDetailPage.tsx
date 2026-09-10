@@ -69,6 +69,9 @@ export const VehicleDetailPage: React.FC<VehicleDetailPageProps> = ({
                 src={vehicle.images[activeImageIndex] || vehicle.images[0]}
                 alt={vehicle.name}
                 className="w-full h-full object-cover transition-all duration-500"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=85';
+                }}
               />
               <div className="absolute top-4 start-4">
                 <span className="px-3.5 py-1 rounded-full text-xs uppercase font-bold bg-brand-charcoal text-brand-lemon border border-brand-lemon/30">
