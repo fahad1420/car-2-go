@@ -51,8 +51,8 @@ export const AuthPage: React.FC<AuthPageProps> = ({ onNavigate = () => {} }) => 
   };
 
   return (
-    <div className="pt-32 pb-24 bg-brand-light min-h-screen text-brand-charcoal flex items-center justify-center px-6">
-      <div className="w-full max-w-md p-8 md:p-10 rounded-3xl bg-white border border-zinc-200/80 shadow-xl flex flex-col gap-6">
+    <div className="pt-24 sm:pt-32 pb-24 bg-brand-light min-h-screen text-brand-charcoal flex items-center justify-center px-4 sm:px-6">
+      <div className="w-full max-w-md p-6 sm:p-8 md:p-10 rounded-3xl bg-white border border-zinc-200/80 shadow-xl flex flex-col gap-6">
         {/* Logo & Mode Switcher */}
         <div className="flex flex-col items-center text-center gap-3">
           <Logo variant="light" showTagline={true} />

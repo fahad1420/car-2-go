@@ -77,26 +77,26 @@ export const FleetPage: React.FC<FleetPageProps> = ({
   ];
 
   return (
-    <div className="pt-32 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="pt-28 sm:pt-32 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Page Header */}
-        <div className="flex flex-col gap-3 mb-12">
+        <div className="flex flex-col gap-2 sm:gap-3 mb-8 sm:mb-12">
           <div className="flex items-center gap-3">
             <span className="w-8 h-[2px] bg-brand-lemon" />
-            <span className="text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
+            <span className="text-[11px] sm:text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
               PRESTIGE SHOWROOM CATALOG
             </span>
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
             {t('fleet.title')}
           </h1>
-          <p className="text-zinc-500 max-w-xl text-base font-normal">
+          <p className="text-zinc-500 max-w-xl text-sm sm:text-base font-normal">
             {t('fleet.subtitle')}
           </p>
         </div>
 
         {/* Filter Controls Bar */}
-        <div className="p-4 rounded-3xl bg-white border border-zinc-200 shadow-sm flex flex-col lg:flex-row gap-4 justify-between items-center mb-12">
+        <div className="p-3 sm:p-4 rounded-3xl bg-white border border-zinc-200 shadow-sm flex flex-col lg:flex-row gap-3 sm:gap-4 justify-between items-stretch lg:items-center mb-8 sm:mb-12">
           {/* Search Input */}
           <div className="relative w-full lg:w-96">
             <Search className="absolute start-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
@@ -110,12 +110,12 @@ export const FleetPage: React.FC<FleetPageProps> = ({
           </div>
 
           {/* Category Tabs */}
-          <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-full bg-zinc-100 border border-zinc-200/80">
+          <div className="flex items-center gap-1.5 p-1 rounded-full bg-zinc-100 border border-zinc-200/80 overflow-x-auto no-scrollbar max-w-full">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide transition-all ${
+                className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide transition-all shrink-0 active:scale-95 touch-manipulation ${
                   selectedCategory === cat.id
                     ? 'bg-brand-charcoal text-brand-lemon shadow-sm'
                     : 'text-zinc-500 hover:text-brand-charcoal'
@@ -127,7 +127,7 @@ export const FleetPage: React.FC<FleetPageProps> = ({
           </div>
 
           {/* Sort Dropdown */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-end gap-2 shrink-0">
             <SlidersHorizontal className="w-4 h-4 text-zinc-400" />
             <select
               value={sortBy}

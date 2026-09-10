@@ -46,44 +46,44 @@ export const FAQSection: React.FC = () => {
   };
 
   return (
-    <section className="py-28 md:py-36 bg-brand-light text-brand-charcoal overflow-hidden border-b border-zinc-200/60">
-      <div className="max-w-4xl mx-auto px-6 lg:px-12">
+    <section className="py-20 sm:py-28 md:py-36 bg-brand-light text-brand-charcoal overflow-hidden border-b border-zinc-200/60">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
-        <div className="flex flex-col items-center text-center gap-3 mb-16">
+        <div className="flex flex-col items-center text-center gap-2.5 sm:gap-3 mb-10 sm:mb-16">
           <div className="flex items-center gap-3">
             <span className="w-8 h-[2px] bg-brand-lemon" />
-            <span className="text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
+            <span className="text-[10px] sm:text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
               10 / {t('faq.tag')}
             </span>
             <span className="w-8 h-[2px] bg-brand-lemon" />
           </div>
-          <h2 className="text-4xl sm:text-5xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight sm:tracking-tight-luxury text-brand-charcoal">
             {t('faq.title')}
           </h2>
-          <p className="text-zinc-500 max-w-lg text-sm font-normal">
+          <p className="text-zinc-500 max-w-lg text-xs sm:text-sm font-normal">
             {t('faq.subtitle')}
           </p>
         </div>
 
         {/* Accordion List */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3 sm:gap-4">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className="rounded-2xl bg-white border border-zinc-200/80 overflow-hidden shadow-sm transition-all"
+                className="rounded-xl sm:rounded-2xl bg-white border border-zinc-200/80 overflow-hidden shadow-sm transition-all"
               >
                 <button
                   onClick={() => toggle(idx)}
-                  className="w-full p-6 text-start flex items-center justify-between gap-4 font-bold text-base sm:text-lg text-brand-charcoal hover:text-zinc-600 transition-colors"
+                  className="w-full p-4 sm:p-6 text-start flex items-center justify-between gap-3 sm:gap-4 font-bold text-sm sm:text-lg text-brand-charcoal hover:text-zinc-600 active:bg-zinc-50 transition-colors"
                 >
-                  <span>{isArabic ? faq.qAr : faq.q}</span>
+                  <span className="leading-snug">{isArabic ? faq.qAr : faq.q}</span>
                   <ChevronDown className={`w-5 h-5 text-zinc-400 shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 text-brand-charcoal' : ''}`} />
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 text-sm text-zinc-600 font-normal leading-relaxed border-t border-zinc-100 pt-4 animate-in fade-in duration-200">
+                  <div className="px-4 pb-4 sm:px-6 sm:pb-6 text-xs sm:text-sm text-zinc-600 font-normal leading-relaxed border-t border-zinc-100 pt-3 sm:pt-4 animate-in fade-in duration-200">
                     {isArabic ? faq.aAr : faq.a}
                   </div>
                 )}

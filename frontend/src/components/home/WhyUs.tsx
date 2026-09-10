@@ -33,42 +33,42 @@ export const WhyUs: React.FC = () => {
   ];
 
   return (
-    <section className="py-28 md:py-36 bg-brand-pure text-brand-charcoal overflow-hidden border-b border-zinc-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section className="py-20 sm:py-28 md:py-36 bg-brand-pure text-brand-charcoal overflow-hidden border-b border-zinc-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
-        <div className="flex flex-col gap-3 mb-20">
+        <div className="flex flex-col gap-2.5 sm:gap-3 mb-12 sm:mb-20">
           <div className="flex items-center gap-3">
             <span className="w-8 h-[2px] bg-brand-lemon" />
-            <span className="text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
+            <span className="text-[10px] sm:text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
               07 / {t('whyUs.tag')}
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-extrabold uppercase tracking-tight sm:tracking-tight-luxury text-brand-charcoal">
             {t('whyUs.title')}
           </h2>
         </div>
 
         {/* 4 Editorial Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
           {pillars.map((item, idx) => (
             <div
               key={idx}
-              className="p-8 rounded-3xl bg-zinc-50 border border-zinc-200/70 hover:border-brand-lemon hover:bg-white transition-all duration-300 flex flex-col justify-between gap-8 group"
+              className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-zinc-50 border border-zinc-200/70 hover:border-brand-lemon hover:bg-white active:scale-[0.99] transition-all duration-300 flex flex-col justify-between gap-6 sm:gap-8 group"
             >
               <div className="flex items-center justify-between">
-                <div className="p-3 rounded-2xl bg-white shadow-sm group-hover:bg-brand-lemon transition-colors">
+                <div className="p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-white shadow-sm group-hover:bg-brand-lemon transition-colors">
                   {item.icon}
                 </div>
-                <span className="text-2xl font-black text-zinc-300 group-hover:text-brand-charcoal transition-colors">
+                <span className="text-xl sm:text-2xl font-black text-zinc-300 group-hover:text-brand-charcoal transition-colors">
                   {item.num}
                 </span>
               </div>
 
-              <div className="flex flex-col gap-3">
-                <h3 className="text-xl font-bold uppercase tracking-tight text-brand-charcoal">
+              <div className="flex flex-col gap-2 sm:gap-3">
+                <h3 className="text-lg sm:text-xl font-bold uppercase tracking-tight text-brand-charcoal">
                   {item.title}
                 </h3>
-                <p className="text-sm text-zinc-500 font-normal leading-relaxed">
+                <p className="text-xs sm:text-sm text-zinc-500 font-normal leading-relaxed">
                   {item.desc}
                 </p>
               </div>

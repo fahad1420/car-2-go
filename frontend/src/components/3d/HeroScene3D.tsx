@@ -77,6 +77,16 @@ export const HeroScene3D: React.FC<{
 }) => {
   const [webglSupported, setWebglSupported] = useState<boolean>(true);
   const [activeScene, setActiveScene] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkViewport = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkViewport();
+    window.addEventListener('resize', checkViewport, { passive: true });
+    return () => window.removeEventListener('resize', checkViewport);
+  }, []);
 
   useEffect(() => {
     try {
@@ -96,13 +106,19 @@ export const HeroScene3D: React.FC<{
       {webglSupported ? (
         <Canvas
           shadows
+          dpr={isMobile ? [1, 1.5] : [1, 2]}
           gl={{
             antialias: true,
             toneMapping: THREE.ACESFilmicToneMapping,
             toneMappingExposure: 1.15,
-            powerPreference: 'high-performance'
+            powerPreference: 'high-performance',
           }}
-          camera={{ position: [0, 3.2, 8.8], fov: 42, near: 0.1, far: 50 }}
+          camera={{
+            position: isMobile ? [0, 3.8, 10.5] : [0, 3.2, 8.8],
+            fov: isMobile ? 52 : 42,
+            near: 0.1,
+            far: 50,
+          }}
           className="w-full h-full"
         >
           <CameraDirector onSceneChange={setActiveScene} />
@@ -111,14 +127,17 @@ export const HeroScene3D: React.FC<{
         </Canvas>
       ) : (
         /* Fallback High-End Visual Engine if WebGL is disabled */
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=2000&q=85')` }}>
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=2000&q=85')` }}
+        >
           <div className="absolute inset-0 bg-gradient-to-t from-brand-charcoal via-brand-charcoal/40 to-transparent" />
         </div>
       )}
 
       {/* Cinematic Vignette & Bottom Blend Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-charcoal via-transparent to-brand-charcoal/40" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-charcoal/80 via-transparent to-brand-charcoal/80" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-brand-charcoal/90 via-transparent to-brand-charcoal/90 md:from-brand-charcoal/80 md:to-brand-charcoal/80" />
 
       {/* Subtle Live Cinematic HUD Indicator */}
       <div className="pointer-events-none absolute bottom-8 right-8 z-10 hidden md:flex items-center gap-3 glass-panel-dark px-4 py-2 rounded-full border border-white/10">

@@ -43,33 +43,33 @@ export const Testimonials: React.FC = () => {
   const prev = () => setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-28 md:py-36 bg-brand-light text-brand-charcoal overflow-hidden border-b border-zinc-200/60">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <section className="py-20 sm:py-28 md:py-36 bg-brand-light text-brand-charcoal overflow-hidden border-b border-zinc-200/60">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
           {/* Left Column: Heading & Controls */}
-          <div className="lg:col-span-4 flex flex-col gap-6">
+          <div className="lg:col-span-4 flex flex-col gap-4 sm:gap-6">
             <div className="flex items-center gap-3">
               <span className="w-8 h-[2px] bg-brand-lemon" />
-              <span className="text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
+              <span className="text-[10px] sm:text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
                 08 / {isArabic ? 'شهادات كبار العملاء' : 'VIP REVIEWS'}
               </span>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold uppercase tracking-tight sm:tracking-tight-luxury text-brand-charcoal">
               {isArabic ? 'ثقة النخبة والشخصيات المرموقة' : 'TRUSTED BY THE DISCERNING FEW'}
             </h2>
 
-            <div className="flex items-center gap-3 pt-4">
+            <div className="flex items-center gap-3 pt-2 sm:pt-4">
               <button
                 onClick={prev}
-                className="p-3.5 rounded-full border border-zinc-300 hover:border-brand-charcoal hover:bg-brand-charcoal hover:text-white transition-all"
+                className="p-3 sm:p-3.5 rounded-full border border-zinc-300 hover:border-brand-charcoal hover:bg-brand-charcoal hover:text-white active:scale-90 transition-all"
                 aria-label="Previous Review"
               >
                 <ChevronLeft className="w-5 h-5" />
               </button>
               <button
                 onClick={next}
-                className="p-3.5 rounded-full border border-zinc-300 hover:border-brand-charcoal hover:bg-brand-charcoal hover:text-white transition-all"
+                className="p-3 sm:p-3.5 rounded-full border border-zinc-300 hover:border-brand-charcoal hover:bg-brand-charcoal hover:text-white active:scale-90 transition-all"
                 aria-label="Next Review"
               >
                 <ChevronRight className="w-5 h-5" />
@@ -81,16 +81,16 @@ export const Testimonials: React.FC = () => {
           </div>
 
           {/* Right Column: Large Editorial Quote */}
-          <div className="lg:col-span-8 p-8 md:p-12 rounded-3xl bg-white border border-zinc-200 shadow-sm relative">
-            <Quote className="w-12 h-12 text-brand-lemon/40 mb-6" />
+          <div className="lg:col-span-8 p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl bg-white border border-zinc-200 shadow-sm relative">
+            <Quote className="w-8 h-8 sm:w-12 sm:h-12 text-brand-lemon/40 mb-4 sm:mb-6" />
 
-            <blockquote className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-brand-charcoal leading-relaxed mb-8">
+            <blockquote className="text-base sm:text-xl md:text-3xl font-display font-bold text-brand-charcoal leading-relaxed mb-6 sm:mb-8">
               "{isArabic ? current.quoteAr : current.quote}"
             </blockquote>
 
-            <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-zinc-100">
+            <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4 pt-4 sm:pt-6 border-t border-zinc-100">
               <div className="flex flex-col">
-                <span className="text-base font-bold text-brand-charcoal">{current.author}</span>
+                <span className="text-sm sm:text-base font-bold text-brand-charcoal">{current.author}</span>
                 <span className="text-xs text-zinc-500 font-medium">{isArabic ? current.roleAr : current.role}</span>
               </div>
 

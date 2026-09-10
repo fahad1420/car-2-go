@@ -47,13 +47,13 @@ export const VehicleDetailPage: React.FC<VehicleDetailPageProps> = ({
   };
 
   return (
-    <div className="pt-28 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="pt-24 sm:pt-28 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Back Button */}
-        <div className="mb-6">
+        <div className="mb-4 sm:mb-6">
           <button
             onClick={() => onNavigate('fleet')}
-            className="flex items-center gap-2 text-xs uppercase font-bold tracking-wider text-zinc-500 hover:text-brand-charcoal transition-colors"
+            className="flex items-center gap-2 text-xs uppercase font-bold tracking-wider text-zinc-500 hover:text-brand-charcoal transition-colors py-2"
           >
             <ArrowLeft className={`w-4 h-4 ${direction === 'rtl' ? 'rotate-180' : ''}`} />
             <span>{isArabic ? 'العودة لأسطول النخبة' : 'Back to Fleet Collection'}</span>

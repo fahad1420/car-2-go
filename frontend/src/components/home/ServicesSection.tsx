@@ -52,37 +52,37 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
   ];
 
   return (
-    <section className="py-28 md:py-36 bg-brand-pure text-brand-charcoal overflow-hidden border-b border-zinc-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section className="py-20 sm:py-28 md:py-36 bg-brand-pure text-brand-charcoal overflow-hidden border-b border-zinc-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
-        <div className="flex flex-col gap-3 mb-20">
+        <div className="flex flex-col gap-2.5 sm:gap-3 mb-12 sm:mb-20">
           <div className="flex items-center gap-3">
             <span className="w-8 h-[2px] bg-brand-lemon" />
-            <span className="text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
+            <span className="text-[10px] sm:text-xs uppercase font-semibold tracking-label-luxury text-zinc-400">
               05 / {t('services.tag')}
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-display font-extrabold uppercase tracking-tight sm:tracking-tight-luxury text-brand-charcoal">
             {t('services.title')}
           </h2>
-          <p className="text-zinc-500 max-w-xl text-base font-normal">
+          <p className="text-zinc-500 max-w-xl text-xs sm:text-base font-normal">
             {t('services.subtitle')}
           </p>
         </div>
 
         {/* Editorial Alternating Layouts */}
-        <div className="flex flex-col gap-24">
+        <div className="flex flex-col gap-12 sm:gap-24">
           {services.map((srv, idx) => {
             const isReversed = idx % 2 === 1;
             return (
               <div
                 key={srv.id}
-                className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center ${
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-12 items-center ${
                   isReversed ? 'lg:flex-row-reverse' : ''
                 }`}
               >
                 {/* Image Column */}
-                <div className={`lg:col-span-6 relative aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl bg-zinc-900 group ${
+                <div className={`lg:col-span-6 relative aspect-[16/10] rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl bg-zinc-900 group ${
                   isReversed ? 'lg:order-2' : 'lg:order-1'
                 }`}>
                   <img
@@ -95,30 +95,30 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                 </div>
 
                 {/* Editorial Content Column */}
-                <div className={`lg:col-span-6 flex flex-col gap-6 ${
+                <div className={`lg:col-span-6 flex flex-col gap-4 sm:gap-6 ${
                   isReversed ? 'lg:order-1' : 'lg:order-2'
                 }`}>
-                  <div className="flex items-center gap-3">
-                    <div className="p-2.5 rounded-2xl bg-brand-charcoal text-white">
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <div className="p-2 sm:p-2.5 rounded-xl sm:rounded-2xl bg-brand-charcoal text-white">
                       {srv.icon}
                     </div>
-                    <span className="text-xs uppercase tracking-label-luxury text-zinc-400 font-semibold">
+                    <span className="text-[10px] sm:text-xs uppercase tracking-label-luxury text-zinc-400 font-semibold">
                       {srv.tag}
                     </span>
                   </div>
 
-                  <h3 className="text-3xl sm:text-4xl font-display font-extrabold uppercase tracking-tight text-brand-charcoal">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold uppercase tracking-tight text-brand-charcoal">
                     {srv.title}
                   </h3>
 
-                  <p className="text-zinc-600 text-base font-normal leading-relaxed">
+                  <p className="text-zinc-600 text-sm sm:text-base font-normal leading-relaxed">
                     {srv.desc}
                   </p>
 
                   {/* Bullet Specs */}
-                  <ul className="flex flex-col gap-2.5 py-2 border-y border-zinc-100">
+                  <ul className="flex flex-col gap-2 sm:gap-2.5 py-2 border-y border-zinc-100">
                     {srv.specs.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2.5 text-xs text-zinc-700 font-medium">
+                      <li key={i} className="flex items-center gap-2 sm:gap-2.5 text-xs text-zinc-700 font-medium">
                         <span className="w-1.5 h-1.5 rounded-full bg-brand-lemon shrink-0" />
                         <span>{item}</span>
                       </li>
@@ -129,6 +129,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
                     <Button
                       variant="charcoal"
                       size="md"
+                      className="w-full sm:w-auto justify-center"
                       onClick={() => onInquireService(srv.title)}
                     >
                       {language === 'ar' ? 'طلب الخدمة الخاصة' : 'Request Bespoke Service'}

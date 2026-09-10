@@ -90,10 +90,10 @@ export const AccountPage: React.FC<AccountPageProps> = ({ onNavigate = () => {} 
   }
 
   return (
-    <div className="pt-32 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="pt-24 sm:pt-32 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* User Greeting Bar */}
-        <div className="p-8 rounded-3xl bg-brand-charcoal text-white flex flex-col md:flex-row items-center justify-between gap-6 mb-10 shadow-xl">
+        <div className="p-6 sm:p-8 rounded-3xl bg-brand-charcoal text-white flex flex-col md:flex-row items-center justify-between gap-6 mb-8 sm:mb-10 shadow-xl">
           <div className="flex items-center gap-4">
             <img
               src={user.avatar || `https://api.dicebear.com/7.x/initials/svg?seed=${user.name}&backgroundColor=18181b`}

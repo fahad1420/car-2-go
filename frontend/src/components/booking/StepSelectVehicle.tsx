@@ -57,13 +57,13 @@ export const StepSelectVehicle: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-label-luxury text-zinc-400">
+          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-label-luxury text-zinc-400">
             STEP 02 • VEHICLE CURATION
           </span>
-          <h2 className="text-3xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
+          <h2 className="text-2xl sm:text-3xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal mt-1">
             {isArabic ? 'اختر سيارتك الفارهة' : 'Select Your Luxury Chassis'}
           </h2>
-          <p className="text-sm text-zinc-500 font-normal mt-1">
+          <p className="text-xs sm:text-sm text-zinc-500 font-normal mt-1">
             {isArabic
               ? `تم التحقق من التوفر للمدة المحددة (${days} أيام)`
               : `Live availability verified for your selected period (${days} days)`}
@@ -71,12 +71,12 @@ export const StepSelectVehicle: React.FC = () => {
         </div>
 
         {/* Category Pill Filters */}
-        <div className="flex flex-wrap gap-2 p-1.5 rounded-full bg-zinc-100 border border-zinc-200">
+        <div className="flex items-center gap-1.5 p-1.5 rounded-full bg-zinc-100 border border-zinc-200 overflow-x-auto no-scrollbar max-w-full">
           {['all', 'Luxury', 'Sports', 'Executive', 'SUV'].map((cat) => (
             <button
               key={cat}
               onClick={() => setCategoryFilter(cat)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide transition-all ${
+              className={`px-3.5 py-2 rounded-full text-xs font-semibold uppercase tracking-wide transition-all shrink-0 active:scale-95 touch-manipulation ${
                 categoryFilter === cat
                   ? 'bg-brand-charcoal text-brand-lemon shadow-sm'
                   : 'text-zinc-600 hover:text-brand-charcoal'

@@ -59,14 +59,14 @@ export const StepAddonsPricing: React.FC = () => {
     <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
       {/* Left Column: Bespoke Add-Ons Selection (7 cols) */}
       <div className="lg:col-span-7 flex flex-col gap-6">
-        <div className="flex flex-col gap-2">
-          <span className="text-xs font-semibold uppercase tracking-label-luxury text-zinc-400">
+        <div className="flex flex-col gap-1.5">
+          <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-label-luxury text-zinc-400">
             STEP 03 • BESPOKE PRIVILEGES
           </span>
-          <h2 className="text-3xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
+          <h2 className="text-2xl sm:text-3xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
             {isArabic ? 'الخدمات الإضافية والتأمين' : 'Tailor Your Mobility Experience'}
           </h2>
-          <p className="text-sm text-zinc-500 font-normal">
+          <p className="text-xs sm:text-sm text-zinc-500 font-normal">
             {isArabic
               ? 'اختر باقات الراحة والتنقل الحصرية لرحلة استثنائية لا تُنسى.'
               : 'Select white-glove enhancements for an effortless, prestigious journey.'}
@@ -80,35 +80,35 @@ export const StepAddonsPricing: React.FC = () => {
               <div
                 key={addon.id}
                 onClick={() => toggleAddon(addon.id)}
-                className={`p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer flex items-start justify-between gap-4 ${
+                className={`p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200 cursor-pointer flex items-start justify-between gap-3 sm:gap-4 active:scale-[0.99] touch-manipulation ${
                   addon.selected
                     ? 'border-brand-charcoal bg-white shadow-md'
                     : 'border-zinc-200/80 bg-zinc-50 hover:bg-white'
                 }`}
               >
-                <div className="flex items-start gap-4">
+                <div className="flex items-start gap-3 sm:gap-4">
                   <div
-                    className={`w-6 h-6 rounded-lg flex items-center justify-center mt-0.5 shrink-0 transition-colors ${
+                    className={`w-5 h-5 sm:w-6 sm:h-6 rounded-lg flex items-center justify-center mt-0.5 shrink-0 transition-colors ${
                       addon.selected
                         ? 'bg-brand-lemon text-brand-charcoal'
                         : 'border-2 border-zinc-300 bg-white'
                     }`}
                   >
-                    {addon.selected && <Check className="w-4 h-4 stroke-[3]" />}
+                    {addon.selected && <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3]" />}
                   </div>
 
                   <div className="flex flex-col">
-                    <span className="text-sm font-bold uppercase tracking-tight text-brand-charcoal">
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-tight text-brand-charcoal">
                       {isArabic ? addon.nameAr : addon.name}
                     </span>
-                    <span className="text-xs text-zinc-500 mt-0.5 leading-relaxed font-normal">
+                    <span className="text-[11px] sm:text-xs text-zinc-500 mt-0.5 leading-relaxed font-normal">
                       {isArabic ? addon.descriptionAr : addon.description}
                     </span>
                   </div>
                 </div>
 
                 <div className="text-end shrink-0">
-                  <span className="text-sm font-bold text-brand-charcoal">
+                  <span className="text-xs sm:text-sm font-bold text-brand-charcoal">
                     +{addon.price.toLocaleString()} SAR
                   </span>
                 </div>
@@ -118,7 +118,7 @@ export const StepAddonsPricing: React.FC = () => {
         </div>
 
         {/* Promo Code Box */}
-        <div className="p-6 rounded-2xl bg-zinc-100 border border-zinc-200 flex flex-col gap-3">
+        <div className="p-4 sm:p-6 rounded-2xl bg-zinc-100 border border-zinc-200 flex flex-col gap-3">
           <span className="text-xs uppercase tracking-wider text-zinc-600 font-bold flex items-center gap-1.5">
             <Tag className="w-4 h-4 text-brand-charcoal" />
             {t('booking.applyPromo')}
@@ -146,7 +146,7 @@ export const StepAddonsPricing: React.FC = () => {
                 value={inputCode}
                 onChange={(e) => setInputCode(e.target.value.toUpperCase())}
                 placeholder={t('booking.promoPlaceholder')}
-                className="flex-1 px-4 py-2.5 rounded-xl bg-white border border-zinc-300 text-xs uppercase font-bold focus:outline-none focus:border-brand-charcoal"
+                className="flex-1 px-3 sm:px-4 py-2.5 rounded-xl bg-white border border-zinc-300 text-xs uppercase font-bold focus:outline-none focus:border-brand-charcoal"
               />
               <Button type="submit" variant="charcoal" size="sm" disabled={validating}>
                 {validating ? 'Checking...' : 'Apply'}
@@ -163,8 +163,8 @@ export const StepAddonsPricing: React.FC = () => {
       </div>
 
       {/* Right Column: Live Pricing Ledger Card (5 cols) */}
-      <div className="lg:col-span-5 p-8 rounded-3xl bg-brand-charcoal text-white border border-white/10 shadow-2xl flex flex-col justify-between gap-8">
-        <div className="flex flex-col gap-6">
+      <div className="lg:col-span-5 p-5 sm:p-8 rounded-3xl bg-brand-charcoal text-white border border-white/10 shadow-2xl flex flex-col justify-between gap-6 sm:gap-8">
+        <div className="flex flex-col gap-5 sm:gap-6">
           <div className="flex items-center justify-between pb-4 border-b border-white/10">
             <span className="text-xs uppercase tracking-label-luxury font-bold text-brand-lemon">
               {t('booking.bookingSummary')}

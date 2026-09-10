@@ -169,10 +169,10 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
   }
 
   return (
-    <div className="pt-32 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="pt-24 sm:pt-32 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         {/* Admin Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-6 border-b border-zinc-200">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 sm:mb-10 pb-6 border-b border-zinc-200">
           <div className="flex items-center gap-3">
             <div className="p-3 rounded-2xl bg-brand-charcoal text-brand-lemon">
               <Shield className="w-6 h-6" />

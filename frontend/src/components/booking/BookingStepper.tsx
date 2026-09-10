@@ -21,8 +21,8 @@ export const BookingStepper: React.FC<BookingStepperProps> = ({
   ];
 
   return (
-    <div className="w-full max-w-4xl mx-auto mb-12">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div className="w-full max-w-4xl mx-auto mb-8 sm:mb-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
         {steps.map((s) => {
           const isDone = currentStep > s.num;
           const isActive = currentStep === s.num;
@@ -32,7 +32,7 @@ export const BookingStepper: React.FC<BookingStepperProps> = ({
               key={s.num}
               onClick={() => isDone && onStepClick(s.num)}
               disabled={!isDone && !isActive}
-              className={`flex items-center gap-3 p-3.5 rounded-2xl border transition-all text-start ${
+              className={`flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl border transition-all text-start active:scale-[0.98] ${
                 isActive
                   ? 'bg-brand-charcoal text-white border-brand-charcoal shadow-md ring-2 ring-brand-lemon/40'
                   : isDone
@@ -41,7 +41,7 @@ export const BookingStepper: React.FC<BookingStepperProps> = ({
               }`}
             >
               <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${
+                className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold shrink-0 ${
                   isActive
                     ? 'bg-brand-lemon text-brand-charcoal'
                     : isDone
@@ -51,7 +51,7 @@ export const BookingStepper: React.FC<BookingStepperProps> = ({
               >
                 {isDone ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : s.num}
               </div>
-              <span className="text-xs font-bold uppercase tracking-wide truncate">
+              <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wide truncate">
                 {s.label}
               </span>
             </button>

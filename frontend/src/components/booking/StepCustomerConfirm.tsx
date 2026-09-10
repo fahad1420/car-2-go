@@ -156,13 +156,13 @@ export const StepCustomerConfirm: React.FC<StepCustomerConfirmProps> = ({
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-8 md:p-10 rounded-3xl bg-white border border-zinc-200/80 shadow-lg flex flex-col gap-8">
+    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-5 sm:p-8 md:p-10 rounded-3xl bg-white border border-zinc-200/80 shadow-lg flex flex-col gap-6 sm:gap-8">
       {/* Title */}
-      <div className="flex flex-col gap-2">
-        <span className="text-xs font-semibold uppercase tracking-label-luxury text-zinc-400">
+      <div className="flex flex-col gap-1.5">
+        <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-label-luxury text-zinc-400">
           STEP 04 • GUEST IDENTIFICATION & CONFIRMATION
         </span>
-        <h2 className="text-3xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
+        <h2 className="text-2xl sm:text-3xl font-display font-extrabold uppercase tracking-tight-luxury text-brand-charcoal">
           {isArabic ? 'بيانات الضيف وتأكيد الحجز' : 'Guest Identification & Verification'}
         </h2>
       </div>

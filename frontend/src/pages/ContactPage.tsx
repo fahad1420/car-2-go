@@ -36,8 +36,8 @@ export const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-28 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="pt-24 sm:pt-28 pb-24 bg-brand-light min-h-screen text-brand-charcoal">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="max-w-2xl mx-auto text-center mb-12 flex flex-col gap-2">
           <span className="text-xs font-mono uppercase tracking-wide-luxury text-zinc-400">
             ROYAL CONCIERGE DIRECT
