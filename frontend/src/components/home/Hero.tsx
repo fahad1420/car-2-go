@@ -23,11 +23,41 @@ export const Hero: React.FC<HeroProps> = ({
     onBookNow();
   };
 
+  const baseUrl = (import.meta as any).env?.BASE_URL || './';
+  const videoPath = `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}videos/hero_cinematic.mp4`;
+
   return (
     <section className="relative w-full min-h-[92vh] md:min-h-screen flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 overflow-hidden bg-brand-charcoal text-white">
-      {/* 3D WebGL Background Cinema Canvas */}
-      <div className="absolute inset-0 z-0">
-        <HeroScene3D />
+      {/* Full-Screen Cinematic Background Video */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover object-center scale-[1.03] filter brightness-[0.72] sm:brightness-[0.78] contrast-[1.1] saturate-[1.08] transition-opacity duration-1000"
+        >
+          <source src={videoPath} type="video/mp4" />
+          <source src="./videos/hero_cinematic.mp4" type="video/mp4" />
+          <source src="/videos/hero_cinematic.mp4" type="video/mp4" />
+        </video>
+
+        {/* Multi-Layer Luxury Editorial Overlays for pristine typography legibility */}
+        {/* 1. Horizontal Directional Readability Gradient */}
+        <div
+          className={`absolute inset-0 bg-gradient-to-r ${
+            direction === 'rtl'
+              ? 'from-transparent via-brand-charcoal/70 to-brand-charcoal/95'
+              : 'from-brand-charcoal/95 via-brand-charcoal/70 to-transparent'
+          }`}
+        />
+
+        {/* 2. Vertical Ambient Vignette (Navbar & Bottom Section Blend) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-charcoal/85 via-transparent to-brand-charcoal/95" />
+
+        {/* 3. Luxury Ambient Sheen */}
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       {/* Hero Foreground Content */}
