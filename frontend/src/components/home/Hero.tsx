@@ -23,20 +23,103 @@ export const Hero: React.FC<HeroProps> = ({
     onBookNow();
   };
 
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = React.useState(false);
+
   const baseUrl = (import.meta as any).env?.BASE_URL || './';
   const videoPath = `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}videos/hero_cinematic.mp4`;
+  const posterUrl = 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1920&q=85';
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Enforce HTML5 & WebKit specific mobile autoplay constraints
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', '');
+    video.setAttribute('webkit-playsinline', 'true');
+    video.setAttribute('muted', '');
+    video.setAttribute('autoplay', '');
+    video.setAttribute('loop', '');
+
+    const attemptPlay = () => {
+      if (!video) return;
+      video.muted = true;
+      video.defaultMuted = true;
+
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setVideoLoaded(true);
+          })
+          .catch((error) => {
+            // Autoplay deferred by browser (e.g. iOS Low Power Mode / Battery Saver)
+            console.warn('[CAR 2 GO] Video autoplay policy handled:', error);
+            
+            // Seamlessly resume on first ambient touch/scroll without breaking UI
+            const handleResume = () => {
+              if (video) {
+                video.muted = true;
+                video.play().then(() => setVideoLoaded(true)).catch(() => {});
+              }
+              window.removeEventListener('touchstart', handleResume);
+              window.removeEventListener('scroll', handleResume);
+              window.removeEventListener('click', handleResume);
+            };
+
+            window.addEventListener('touchstart', handleResume, { passive: true, once: true });
+            window.addEventListener('scroll', handleResume, { passive: true, once: true });
+            window.addEventListener('click', handleResume, { passive: true, once: true });
+          });
+      }
+    };
+
+    if (video.readyState >= 2) {
+      attemptPlay();
+    } else {
+      video.addEventListener('loadedmetadata', attemptPlay, { once: true });
+      video.addEventListener('loadeddata', attemptPlay, { once: true });
+      video.addEventListener('canplay', attemptPlay, { once: true });
+    }
+
+    attemptPlay();
+
+    return () => {
+      video.removeEventListener('loadedmetadata', attemptPlay);
+      video.removeEventListener('loadeddata', attemptPlay);
+      video.removeEventListener('canplay', attemptPlay);
+    };
+  }, [videoPath]);
 
   return (
     <section className="relative w-full min-h-[92vh] md:min-h-screen flex flex-col justify-between pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 overflow-hidden bg-brand-charcoal text-white">
       {/* Full-Screen Cinematic Background Video */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none bg-brand-charcoal">
+        {/* Poster Fallback Layer (Ensures zero blank frames while video initializes) */}
+        <div
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${
+            videoLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
+          style={{ backgroundImage: `url(${posterUrl})` }}
+        />
+
         <video
+          ref={videoRef}
+          src={videoPath}
+          poster={posterUrl}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
-          className="w-full h-full object-cover object-center scale-[1.03] filter brightness-[0.72] sm:brightness-[0.78] contrast-[1.1] saturate-[1.08] transition-opacity duration-1000"
+          // @ts-ignore
+          webkit-playsinline="true"
+          disablePictureInPicture
+          disableRemotePlayback
+          className="w-full h-full object-cover object-center scale-[1.02] filter brightness-[0.72] sm:brightness-[0.78] contrast-[1.1] saturate-[1.08] transition-opacity duration-1000 transform-gpu"
         >
           <source src={videoPath} type="video/mp4" />
           <source src="./videos/hero_cinematic.mp4" type="video/mp4" />
