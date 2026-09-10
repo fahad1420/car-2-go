@@ -102,3 +102,35 @@
   background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
   background-size: 24px 24px;
 }
+
+/* Staggered Mobile Nav Animation Keyframes */
+@keyframes navOverlayEnter {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes navItemReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-nav-overlay {
+  animation: navOverlayEnter 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-nav-item {
+  opacity: 0;
+  animation: navItemReveal 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}

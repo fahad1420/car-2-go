@@ -3,7 +3,7 @@ import { Logo } from './Logo';
 import { Button } from './Button';
 import { useI18n } from '../../i18n/i18nContext';
 import { useAuth } from '../../context/AuthContext';
-import { Globe, User as UserIcon, Menu, X, Shield, ArrowRight, LogOut, PhoneCall, Sparkles } from 'lucide-react';
+import { Globe, User as UserIcon, Shield, ArrowRight, LogOut, PhoneCall } from 'lucide-react';
 
 interface NavbarProps {
   currentPage?: string;
@@ -14,10 +14,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   currentPage = 'home',
   onNavigate = () => {}
 }) => {
-  const { language, toggleLanguage, t, direction } = useI18n();
+  const { language, toggleLanguage, setLanguage, t, direction } = useI18n();
   const { user, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const isArabic = language === 'ar';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,24 +29,37 @@ export const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
+  // Lock body scroll & handle ESC key when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.style.touchAction = 'none';
     } else {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
     }
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => {
       document.body.style.overflow = '';
+      document.body.style.touchAction = '';
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [mobileMenuOpen]);
 
   const navItems = [
-    { id: 'home', num: '01', label: t('nav.home') },
-    { id: 'fleet', num: '02', label: t('nav.fleet') },
-    { id: 'services', num: '03', label: t('nav.services') },
-    { id: 'locations', num: '04', label: t('nav.locations') },
-    { id: 'contact', num: '05', label: t('nav.contact') },
+    { id: 'home', num: '01', label: t('nav.home'), labelAr: 'الرئيسية' },
+    { id: 'fleet', num: '02', label: t('nav.fleet'), labelAr: 'أسطول السيارات' },
+    { id: 'services', num: '03', label: t('nav.services'), labelAr: 'خدمات النخبة' },
+    { id: 'locations', num: '04', label: t('nav.locations'), labelAr: 'مراكز الخدمة' },
+    { id: 'contact', num: '05', label: t('nav.contact'), labelAr: 'الكونسيرج' },
   ];
 
   const handleNavClick = (pageId: string) => {
@@ -55,15 +70,16 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <>
+      {/* Main Top Header Navigation Bar */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 safe-pt ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 safe-pt ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-black/5 py-3 md:py-3.5'
-            : 'bg-white/85 backdrop-blur-sm py-3.5 md:py-5'
+            ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-black/[0.06] py-3 md:py-3.5'
+            : 'bg-white/85 backdrop-blur-md py-3.5 md:py-5 border-b border-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
-          {/* Logo */}
+          {/* Brand Logo */}
           <button
             onClick={() => handleNavClick('home')}
             className="focus:outline-none flex items-center group cursor-pointer text-start active:scale-95 transition-transform"
@@ -72,8 +88,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Logo variant="light" showTagline={false} />
           </button>
 
-          {/* Center Desktop Navigation Items */}
-          <nav className="hidden md:flex items-center gap-8">
+          {/* Center Desktop Navigation Items (Hidden on Mobile) */}
+          <nav className="hidden lg:flex items-center gap-8">
             {navItems.map((item) => {
               const active = currentPage === item.id;
               return (
@@ -95,7 +111,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             })}
           </nav>
 
-          {/* Right Desktop Action Cluster */}
+          {/* Right Desktop Action Cluster (Hidden on Mobile) */}
           <div className="hidden lg:flex items-center gap-4">
             {/* VIP Hotline Indicator */}
             <a
@@ -129,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 {user.role === 'admin' && (
                   <button
                     onClick={() => handleNavClick('admin')}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-charcoal text-brand-lemon text-xs font-bold hover:bg-black transition-all"
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brand-charcoal text-brand-lemon text-xs font-bold hover:bg-black transition-all"
                     title="Admin Suite"
                   >
                     <Shield className="w-3.5 h-3.5" />
@@ -164,142 +180,196 @@ export const Navbar: React.FC<NavbarProps> = ({
             </Button>
           </div>
 
-          {/* Mobile Right Controls: Language Pill + App Drawer Trigger */}
+          {/* Refined Mobile Navigation Controls (Top Right) */}
           <div className="flex lg:hidden items-center gap-2">
+            {/* Quick Language Pill */}
             <button
               onClick={toggleLanguage}
-              className="px-3 py-1.5 rounded-full border border-zinc-200/90 text-xs font-bold text-brand-charcoal active:scale-95 transition-transform bg-zinc-50"
+              className="px-3 py-1.5 rounded-full border border-zinc-200 bg-zinc-50 text-xs font-bold text-brand-charcoal active:scale-95 transition-transform"
               aria-label="Toggle language"
             >
               {language === 'en' ? 'عربي' : 'EN'}
             </button>
 
+            {/* Minimalist Morphing Hamburger Trigger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 text-brand-charcoal hover:bg-zinc-100 rounded-full active:scale-90 transition-all cursor-pointer"
-              aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Menu'}
+              className="relative w-11 h-11 rounded-full flex flex-col items-center justify-center bg-zinc-100/90 hover:bg-zinc-200 active:scale-90 transition-all border border-black/5 cursor-pointer z-50"
+              aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+              aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6 stroke-[2.2]" />
-              ) : (
-                <Menu className="w-6 h-6 stroke-[2.2]" />
-              )}
+              <div className="w-5 h-4 relative flex flex-col justify-between items-center">
+                <span
+                  className={`block h-[2px] bg-brand-charcoal rounded-full transition-all duration-300 ease-out origin-center ${
+                    mobileMenuOpen
+                      ? 'w-5 translate-y-[7px] rotate-45 bg-brand-lemon'
+                      : 'w-5 translate-y-0'
+                  }`}
+                />
+                <span
+                  className={`block h-[2px] bg-brand-charcoal rounded-full transition-all duration-300 ease-out origin-center ${
+                    mobileMenuOpen
+                      ? 'w-5 -translate-y-[7px] -rotate-45 bg-brand-lemon'
+                      : 'w-3.5 self-end'
+                  }`}
+                />
+              </div>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Cinematic Luxury Mobile App Drawer Overlay */}
+      {/* Design Monks Inspired Fullscreen Editorial Mobile Navigation Overlay */}
       {mobileMenuOpen && (
         <div
-          className="lg:hidden fixed inset-0 z-40 bg-brand-charcoal/95 backdrop-blur-2xl flex flex-col justify-between pt-24 pb-8 px-6 text-white safe-pb animate-in fade-in duration-200 overflow-y-auto"
+          className="lg:hidden fixed inset-0 z-50 bg-[#09090B] text-white flex flex-col justify-between animate-nav-overlay overflow-y-auto overscroll-contain safe-pb"
+          role="dialog"
+          aria-modal="true"
         >
-          {/* Top Info Banner */}
-          <div className="flex items-center justify-between pb-4 border-b border-white/10">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-brand-lemon animate-pulse" />
-              <span className="text-[11px] font-mono tracking-widest uppercase text-zinc-400">
-                ROYAL AUTOMOTIVE CONCIERGE
-              </span>
-            </div>
-            <a
-              href="tel:+966800227246"
-              className="text-[11px] font-bold text-brand-lemon flex items-center gap-1.5"
+          {/* Subtle Ambient Radial Glow in Top Corner */}
+          <div className="absolute top-0 right-0 w-80 h-80 bg-brand-lemon/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+          {/* Overlay Top Bar (Synchronized with Header Position) */}
+          <div className="w-full px-4 sm:px-6 safe-pt py-4 flex items-center justify-between border-b border-white/10">
+            {/* Brand Logo in White */}
+            <button
+              onClick={() => handleNavClick('home')}
+              className="focus:outline-none flex items-center group cursor-pointer text-start"
             >
-              <PhoneCall className="w-3.5 h-3.5" />
-              <span>800 227 246</span>
-            </a>
-          </div>
+              <Logo variant="dark" showTagline={false} />
+            </button>
 
-          {/* Editorial Menu Navigation Links */}
-          <div className="flex flex-col gap-2 my-auto py-6">
-            {navItems.map((item) => {
-              const active = currentPage === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.id)}
-                  className={`group w-full flex items-center justify-between py-3.5 px-4 rounded-2xl transition-all duration-200 text-start active:scale-[0.98] ${
-                    active
-                      ? 'bg-white/10 text-brand-lemon border border-brand-lemon/30 shadow-lg'
-                      : 'text-zinc-300 hover:text-white hover:bg-white/5'
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-xs font-mono text-zinc-500 group-hover:text-brand-lemon transition-colors">
-                      {item.num}
-                    </span>
-                    <span className="text-lg font-display font-extrabold uppercase tracking-tight">
-                      {item.label}
-                    </span>
-                  </div>
-                  <ArrowRight
-                    className={`w-4 h-4 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all ${
-                      direction === 'rtl' ? 'rotate-180 group-hover:-translate-x-1' : ''
-                    } ${active ? 'text-brand-lemon opacity-100' : ''}`}
-                  />
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Bottom App Actions: User Profile + Primary CTA */}
-          <div className="flex flex-col gap-3 pt-4 border-t border-white/10">
-            {user ? (
-              <div className="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/10">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-brand-lemon/15 text-brand-lemon flex items-center justify-center font-bold text-xs">
-                    {user.name.charAt(0)}
-                  </div>
-                  <div className="flex flex-col text-start">
-                    <span className="text-xs font-bold text-white leading-tight">{user.name}</span>
-                    <span className="text-[10px] text-zinc-400 capitalize">{user.role} Member</span>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => handleNavClick('account')}
-                    className="px-3 py-1.5 rounded-xl bg-white/10 text-xs font-semibold text-white hover:bg-white/20"
-                  >
-                    {t('nav.account')}
-                  </button>
-                  {user.role === 'admin' && (
-                    <button
-                      onClick={() => handleNavClick('admin')}
-                      className="p-1.5 rounded-xl bg-brand-lemon text-brand-charcoal font-bold text-xs"
-                      title="Admin Suite"
-                    >
-                      <Shield className="w-4 h-4" />
-                    </button>
-                  )}
-                  <button
-                    onClick={logout}
-                    className="p-1.5 text-zinc-400 hover:text-red-400"
-                    title="Sign Out"
-                  >
-                    <LogOut className="w-4 h-4" />
-                  </button>
-                </div>
+            {/* Close Button Trigger with Morphing Cross & Label */}
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 transition-all text-xs font-bold uppercase tracking-wider text-brand-lemon border border-brand-lemon/30"
+              aria-label="Close menu"
+            >
+              <span>{isArabic ? 'إغلاق' : 'CLOSE'}</span>
+              <div className="w-3.5 h-3.5 relative flex items-center justify-center">
+                <span className="absolute block w-3.5 h-[1.5px] bg-brand-lemon rotate-45" />
+                <span className="absolute block w-3.5 h-[1.5px] bg-brand-lemon -rotate-45" />
               </div>
-            ) : (
-              <button
-                onClick={() => handleNavClick('auth')}
-                className="w-full py-3 text-center text-xs font-bold uppercase tracking-wider text-white bg-white/10 hover:bg-white/15 rounded-2xl border border-white/10 transition-colors"
-              >
-                {t('nav.signIn')} • Member Portal
-              </button>
-            )}
+            </button>
+          </div>
 
-            {/* Primary Action Button */}
-            <Button
-              variant="lemon"
-              size="lg"
-              fullWidth
+          {/* Staggered Editorial Navigation Items List */}
+          <div className="flex-1 flex flex-col justify-center px-6 sm:px-8 py-8">
+            <div className="flex flex-col gap-1 sm:gap-2">
+              {navItems.map((item, index) => {
+                const active = currentPage === item.id;
+                const delayMs = index * 60 + 100;
+
+                return (
+                  <div
+                    key={item.id}
+                    className="animate-nav-item border-b border-white/5 last:border-none"
+                    style={{ animationDelay: `${delayMs}ms` }}
+                  >
+                    <button
+                      onClick={() => handleNavClick(item.id)}
+                      className={`group w-full py-4 sm:py-5 flex items-center justify-between transition-all duration-300 text-start active:scale-[0.98] ${
+                        active ? 'text-brand-lemon' : 'text-zinc-300 hover:text-white'
+                      }`}
+                    >
+                      <div className="flex items-baseline gap-3 sm:gap-4">
+                        <span className={`text-xs font-mono transition-colors ${
+                          active ? 'text-brand-lemon font-bold' : 'text-zinc-600 group-hover:text-zinc-400'
+                        }`}>
+                          {item.num}
+                        </span>
+                        <span className="text-2xl sm:text-3xl md:text-4xl font-display font-black tracking-tight-luxury uppercase">
+                          {isArabic ? item.labelAr : item.label}
+                        </span>
+                      </div>
+
+                      {/* Active Glowing Dot / Arrow Indicator */}
+                      <div className="flex items-center gap-2">
+                        {active && (
+                          <span className="w-2 h-2 rounded-full bg-brand-lemon shadow-[0_0_12px_#E2F163]" />
+                        )}
+                        <ArrowRight
+                          className={`w-4 h-4 sm:w-5 sm:h-5 transition-all duration-300 ${
+                            direction === 'rtl' ? 'rotate-180 group-hover:-translate-x-1' : 'group-hover:translate-x-1'
+                          } ${
+                            active
+                              ? 'text-brand-lemon opacity-100'
+                              : 'text-zinc-600 group-hover:text-white opacity-0 group-hover:opacity-100'
+                          }`}
+                        />
+                      </div>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Bottom Luxury Actions & Concierge Hub */}
+          <div
+            className="px-6 sm:px-8 pt-4 pb-6 flex flex-col gap-4 border-t border-white/10 animate-nav-item"
+            style={{ animationDelay: '420ms' }}
+          >
+            {/* Primary Action Button: BOOK NOW */}
+            <button
               onClick={() => handleNavClick('booking')}
-              icon={<ArrowRight className={`w-4 h-4 ${direction === 'rtl' ? 'rotate-180' : ''}`} />}
+              className="w-full py-4 rounded-2xl bg-brand-lemon text-brand-charcoal font-display font-black text-sm uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg hover:bg-[#d6e556] active:scale-[0.98] transition-all"
             >
-              {t('nav.bookNow')}
-            </Button>
+              <span>{t('nav.bookNow')}</span>
+              <ArrowRight className={`w-4 h-4 ${direction === 'rtl' ? 'rotate-180' : ''}`} />
+            </button>
+
+            {/* Bilingual Dual-Switch Language Toggle */}
+            <div className="grid grid-cols-2 p-1 rounded-2xl bg-white/5 border border-white/10 text-xs font-bold uppercase tracking-wider text-center">
+              <button
+                onClick={() => setLanguage('en')}
+                className={`py-2 rounded-xl transition-all ${
+                  language === 'en'
+                    ? 'bg-white text-brand-charcoal shadow-sm'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                English (EN)
+              </button>
+              <button
+                onClick={() => setLanguage('ar')}
+                className={`py-2 rounded-xl font-arabic transition-all ${
+                  language === 'ar'
+                    ? 'bg-white text-brand-charcoal shadow-sm'
+                    : 'text-zinc-400 hover:text-white'
+                }`}
+              >
+                العربية (AR)
+              </button>
+            </div>
+
+            {/* VIP Hotline & Member Direct Strip */}
+            <div className="flex items-center justify-between pt-1 text-xs text-zinc-400 font-mono">
+              <a
+                href="tel:+966800227246"
+                className="flex items-center gap-2 hover:text-brand-lemon transition-colors"
+              >
+                <div className="w-2 h-2 rounded-full bg-brand-lemon animate-pulse" />
+                <span className="text-zinc-300 font-bold">+966 800 227 246</span>
+              </a>
+
+              {user ? (
+                <button
+                  onClick={() => handleNavClick('account')}
+                  className="flex items-center gap-1.5 text-brand-lemon hover:underline"
+                >
+                  <UserIcon className="w-3.5 h-3.5" />
+                  <span>{user.name.split(' ')[0]}</span>
+                </button>
+              ) : (
+                <button
+                  onClick={() => handleNavClick('auth')}
+                  className="text-zinc-300 hover:text-white font-sans uppercase font-bold text-[11px]"
+                >
+                  {t('nav.signIn')}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       )}
